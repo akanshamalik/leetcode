@@ -89,3 +89,39 @@ class Solution {
         return isSameTree(p.left, q.left) && isSameTree(p.right , q.right);
     } 
 }
+
+//Using BFS
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p == null && q == null){
+            return true;
+        }
+        if(p == null || q == null){
+            return false;
+        }
+
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(p);
+        que.offer(q);
+        while(!que.isEmpty()){
+            TreeNode x = que.poll();
+            TreeNode y = que.poll();
+            if(x == null && y == null){
+                continue;
+            }
+            if(x == null || y == null){
+                return false;
+            }
+            if(x.val != y.val){
+                return false;
+            }
+            que.add(x.left);
+            que.add(y.left);
+            que.add(x.right);
+            que.add(y.right);
+        }
+        
+        
+        return true;
+    } 
+}
