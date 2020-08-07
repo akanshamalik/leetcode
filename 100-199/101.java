@@ -49,3 +49,36 @@ class Solution {
         return match(p.left , q.right) && match(p.right , q.left);
     }
 }
+
+// Using Iterative Method(Queue)
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root.left);
+        queue.add(root.right);
+        while(!queue.isEmpty()){
+            TreeNode q = queue.poll();
+            TreeNode y = queue.poll();
+            if(q == null && y == null){
+                continue;
+            }
+            if(q == null || y == null){
+                return false;
+            }
+            if(q. val != y.val){
+                return false;
+            }
+            queue.add(q.left);
+            queue.add(y.right);
+            queue.add(q.right);
+            queue.add(y.left);
+            
+        }
+        
+        return true;
+    }
+}
