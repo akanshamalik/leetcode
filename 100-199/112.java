@@ -44,3 +44,32 @@ class Solution {
         
     }
 }
+
+// Using DFS
+class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if(root == null){
+            return false;
+        }
+        Stack<TreeNode> node_stack = new Stack<>();
+        Stack<Integer> sum_stack = new Stack<>();
+        node_stack.push(root);
+        sum_stack.push(sum - root.val);
+        while(!node_stack.isEmpty()){
+            TreeNode x = node_stack.pop();
+            int y = sum_stack.pop();
+            if(x.left == null && x.right == null && y ==0){
+                return true;
+            }
+            if(x.left != null){
+                node_stack.push(x.left);
+                sum_stack.push(y -x.left.val);
+            }
+              if(x.right != null){
+                node_stack.push(x.right);
+                sum_stack.push(y -x.right.val);
+            }
+        }
+        return false;
+    }
+}
