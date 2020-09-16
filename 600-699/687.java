@@ -19,22 +19,22 @@ class Solution {
     int ans;
     public int longestUnivaluePath(TreeNode root) {
         ans = 0;
-        arrowLength(root);
+        luniVal(root);
         return ans;
     }
-    public int arrowLength(TreeNode node) {
-        if (node == null) return 0;
-        int left = arrowLength(node.left);
-        int right = arrowLength(node.right);
-        int arrowLeft = 0, arrowRight = 0;
-        if (node.left != null && node.left.val == node.val) {
-            arrowLeft += left + 1;
+    public int luniVal(TreeNode root) {
+        if (root == null) return 0;
+        int left = luniVal(root.left);
+        int right = luniVal(root.right);
+        int rootL = 0, rootR = 0;
+        if (root.left != null && root.left.val == root.val) {
+            rootL += left + 1;
         }
-        if (node.right != null && node.right.val == node.val) {
-            arrowRight += right + 1;
+        if (root.right != null && root.right.val == root.val) {
+            rootR += right + 1;
         }
-        ans = Math.max(ans, arrowLeft + arrowRight);
+        ans = Math.max(ans, rootL + rootR);
 
-        return Math.max(arrowLeft, arrowRight);
+        return Math.max(rootL, rootR);
     }
 }
