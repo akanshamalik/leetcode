@@ -1,5 +1,4 @@
-/**
- 206. Reverse a singly linked list.
+/**206. Reverse a singly linked list.
 
 Example:
 
