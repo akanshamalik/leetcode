@@ -40,16 +40,18 @@ return its depth = 3.
  *     }
  * }
  */
+//BFS
+
 class Solution {
-    public int maxDepth(final TreeNode root) {
-        int count = 0;
-        if (root == null) {
+    public int maxDepth(TreeNode root) {
+      int count =0;
+        if(root == null){
             return 0;
         }
-        final Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        while (!queue.isEmpty()) {
-            final int size = queue.size();
+        while(!queue.isEmpty()){
+            int size = queue.size();
             for(int i=0; i< size; i++){
                 if(queue.peek().left !=null){
                     queue.offer(queue.peek().left);
@@ -62,5 +64,21 @@ class Solution {
             count++;
         }
         return count;
+    
+    }
+}
+//Recursion
+
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        
+        return Math.max(left,right)+1;
+    
     }
 }
