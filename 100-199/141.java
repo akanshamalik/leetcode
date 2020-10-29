@@ -27,17 +27,21 @@ Explanation: There is a cycle in the linked list, where tail connects to the sec
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-       if(head == null || head.next == null){
-           return false;
-       }
-        ListNode dummy = head;
-         while( dummy != null && dummy.next != null){
-             dummy = dummy.next.next;
-             if(dummy == head){
-                 return true;
-             }
-             head = head.next;
-         }
+        if(head == null || head.next == null){
+            return false;
+        }
+        ListNode prev= new ListNode(0);
+        prev.next = head;
+        ListNode slow = prev;
+        ListNode fast = head;
+        
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if( slow == fast){
+                return true;
+            }
+        }
         
         return false;
     }
