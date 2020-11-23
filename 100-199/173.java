@@ -43,18 +43,18 @@ class BSTIterator {
     
     /** @return the next smallest number */
     public int next() {
-        TreeNode curr = stack.pop();
-        int x = curr.val;
+        TreeNode x = stack.pop();
+        TreeNode curr = x;
         if(curr.right != null){
             curr = curr.right;
             stack.push(curr);
             while(curr.left != null){
-                stack.push(curr.left);
                 curr = curr.left;
+                stack.push(curr);
             }
         }
         
-        return x;
+        return x.val;
         
     }
     
